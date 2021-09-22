@@ -302,7 +302,6 @@ class Sapper:
 
         if win:
             with open('file.txt', 'a') as fw:
-                # записываем
                 # json.dump(box, fw)
                 fw.write(now.strftime("%d-%m-%Y %H:%M\n"))
                 fw.write('Победа\n')
@@ -315,7 +314,6 @@ class Sapper:
                 print(*r)
         else:
             with open('file.txt', 'a') as fw:
-                # записываем
                 # json.dump(box, fw)
                 fw.write(now.strftime("%d-%m-%Y %H:%M\n"))
                 fw.write('Поражение\n')
