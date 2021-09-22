@@ -270,7 +270,7 @@ class Sapper:
             for col_c in range(0, self.get_column()):
                 if box[row_c][col_c] != '*':
                     self.set_count_bomb(row_c, col_c, box)
-        self.draw_map(box)
+        # self.draw_map(box)
 
         win = False
         loss = False
