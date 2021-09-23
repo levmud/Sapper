@@ -361,7 +361,7 @@ class Sapper:
             for r in box:
                 print(*r)
         elif loss:
-            with open('file.txt', 'a') as fw:
+            with open('games.txt', 'a') as fw:
                 # записываем
                 # json.dump(box, fw)
                 fw.write(now.strftime("%d-%m-%Y %H:%M\n"))
