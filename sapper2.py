@@ -315,9 +315,6 @@ class Sapper:
             # kol = len(visible) * len(visible) - mines - 1
             kol = self.get_column() * self.get_row() - mines - 1
 
-        print(self.get_row())
-        print(self.get_column())
-
         win = False
         loss = False
         pause = False
