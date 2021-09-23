@@ -1,11 +1,25 @@
 from random import randrange
 import json
 import datetime
+from os import listdir
 
 
 class Sapper:
     row, column, status = 0, 0, 0
     name = ''
+
+    def get_list(self):
+        print('Список сохранений:')
+        files = listdir()
+        doc = filter(lambda x: x.endswith('0.txt'), files)
+        for elem in doc:
+            st = ''
+            for x in elem:
+                if x == '.':
+                    break
+                else:
+                    st += x
+            print(st[0:len(st) - 1])
 
     def set_name(self, val):
         self.name = val
@@ -282,6 +296,7 @@ class Sapper:
 
     def cod(self, box):
         cbox = ''
+        codbox = ''
         for row in box:
             for elem in row:
                 if elem == 0:
@@ -304,13 +319,35 @@ class Sapper:
                     cbox += '1000'
                 else:
                     cbox += '1001'
-        return cbox
+        for i in range(0,len(cbox),2):
+            st = cbox[i:i+2]
+            if st == '00':
+                codbox += 'l'
+            elif st == '01':
+                codbox += 'e'
+            elif st == '10':
+                codbox += 'v'
+            else:
+                codbox += 'a'
+        return codbox
 
     def decod(self, stcod, col_c, row_c):
         map = [[] * col_c for i in range(row_c)]
-        k = 0
-        for i in range(0, len(stcod), 4):
-            st = stcod[i:i + 4]
+        cbox = ''
+
+        for i in range(0, len(stcod)):
+            bs = stcod[i]
+            if bs == 'l':
+                cbox += '00'
+            elif bs == 'e':
+                cbox += '01'
+            elif bs == 'v':
+                cbox += '10'
+            else:
+                cbox += '11'
+
+        for i in range(0, len(cbox), 4):
+            st = cbox[i:i + 4]
             if st == '0000':
                 elem = 0
             elif st == '0001':
@@ -356,7 +393,9 @@ class Sapper:
                         self.set_count_bomb(row_c, col_c, box)
 
         else:
+            self.get_list()
             self.set_name(input('Введите название: '))
+            print()
             with open(self.get_name() + '.txt', 'r') as f1:
                 visible = json.load(f1)
             self.set_row(len(visible))
@@ -364,6 +403,7 @@ class Sapper:
             with open(self.get_name() + '0.txt', 'r') as f2:
                 box = json.load(f2)
             box = self.decod(box, self.get_column(), self.get_row())
+
 
             mines = 0
             for row in box:
@@ -385,6 +425,7 @@ class Sapper:
 
             x -= 1
             y -= 1
+
             if act == 0:
                 visible[x][y] = '!'
             elif act == 1:
