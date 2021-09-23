@@ -377,7 +377,7 @@ class Sapper:
         loss = False
         pause = False
 
-        self.draw_map(box)
+        # self.draw_map(box)
 
         while not win and not loss and not pause:
 
