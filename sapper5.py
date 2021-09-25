@@ -413,14 +413,13 @@ class Sapper:
         loss = False
         pause = False
 
-        self.draw_map(box)
+        #self.draw_map(box)
 
         while not win and not loss and not pause:
 
             self.draw_map(visible)
 
-            x, y = map(int, input('Введите координаты: ').split())
-            act = int(input('Flag(0) или Tap(1) или Save(2): '))
+            x, y, act = map(int, input('Введите координаты и дествие, где Flag(0), Tap(1), Save(2): ').split())
 
             x -= 1
             y -= 1
@@ -471,8 +470,8 @@ class Sapper:
 
 
 end = 0
-print('Добро пожаловать в Sapper \nПросим вас следовать инструкциям ввода \nПример ввода координат: 1 1\n'
-      'Приятной игры! \nИгра создана для отбора на курс ML&DL\n')
+print('Добро пожаловать в Sapper \nПросим вас следовать инструкциям ввода \nПример ввода координат и действия: 2 2 1\n'
+      'Где (2,2) - координаты, а 1 - тип действия \nПриятной игры! \nИгра создана для отбора на курс ML&DL\n')
 while end == 0:
     game = Sapper()
     end = int(input('\nНачать заново(0) или выйти(1): '))
